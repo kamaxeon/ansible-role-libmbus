@@ -43,6 +43,14 @@ def test_binary_files(File, name):
     assert File(name).is_file
     assert File(name).user == 'root'
     assert File(name).mode == 0o755
+
+
+def test_local_lib_conf(File):
+    file = File('/etc/ld.so.conf.d/libmbus_lib.conf')
+    assert file.exists
+    assert file.is_file
+    assert file.user == 'root'
+    assert file.mode == 0o644
 # # Binary files
 # @pytest.mark.parametrize('name', [
 #     ('mbus-serial-request-data'),
