@@ -17,6 +17,9 @@ docker:
     - name: libmbus_debian_jessie
       image: debian
       image_version: jessie
+    - name: libmbus_debian_wheezy
+      image: debian
+      image_version: wheezy
 verifier:
   name: testinfra
 molecule:
