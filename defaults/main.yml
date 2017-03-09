@@ -1,3 +1,9 @@
 ---
 libmbus_repo: https://github.com/kamaxeon/libmbus.git
-libmbus_dest: /usr/src
+libmbus_dest: /usr/src/libmbus
+libmbus_base_packages:
+  - gcc
+  - automake
+  - make
+  - libtool
+  - git

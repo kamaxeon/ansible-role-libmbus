@@ -3,8 +3,10 @@
   package:
       name={{item}}
       state=present
-  with_items:
-    - gcc
-    - automake
-    - make
-    - libtool
+  with_items: "{{ libmbus_base_packages }}"
+
+# - name: Ensure git repository is downloaded
+#   git:
+#     repo: "{{ libmbus_repo }}"
+#     dest: "{{ libmbus_dest }}"
+#
