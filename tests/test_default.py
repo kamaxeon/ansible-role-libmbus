@@ -16,6 +16,11 @@ def test_base_packes(Package, name):
     assert Package(name).is_installed
 
 
+def test_repo_dest(File):
+    dir_repo = '/usr/src/libmbus'
+    assert File(dir_repo).exists
+    assert File(dir_repo).is_directory
+
 # # Binary files
 # @pytest.mark.parametrize('name', [
 #     ('mbus-serial-request-data'),
