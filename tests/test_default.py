@@ -51,23 +51,23 @@ def test_local_lib_conf(File):
     assert file.is_file
     assert file.user == 'root'
     assert file.mode == 0o644
-# # Binary files
-# @pytest.mark.parametrize('name', [
-#     ('mbus-serial-request-data'),
-#     ('mbus-serial-request-data-multi-reply'),
-#     ('mbus-serial-scan'),
-#     ('mbus-serial-scan-secondary'),
-#     ('mbus-serial-select-secondary'),
-#     ('mbus-serial-set-address'),
-#     ('mbus-serial-switch-baudrate'),
-#     ('mbus-tcp-application-reset'),
-#     ('mbus-tcp-raw-send'),
-#     ('mbus-tcp-request-data'),
-#     ('mbus-tcp-request-data-multi-reply'),
-#     ('mbus-tcp-scan'),
-#     ('mbus-tcp-scan-secondary'),
-#     ('mbus-tcp-select-secondary'),
-# ])
-# def test_run_binary(Command, name):
-#     cmd = (Command(name))
-#     assert 'mbus-serial' in cmd.stdout
+
+
+# Binary files
+@pytest.mark.parametrize('name', [
+    ('mbus-serial-request-data'),
+    ('mbus-serial-request-data-multi-reply'),
+    ('mbus-serial-scan'),
+    ('mbus-serial-scan-secondary'),
+    ('mbus-serial-select-secondary'),
+    ('mbus-serial-switch-baudrate'),
+    ('mbus-tcp-application-reset'),
+    ('mbus-tcp-raw-send'),
+    ('mbus-tcp-request-data'),
+    ('mbus-tcp-request-data-multi-reply'),
+    ('mbus-tcp-scan'),
+    ('mbus-tcp-scan-secondary'),
+    ('mbus-tcp-select-secondary'),
+])
+def test_run_binary(Command, name):
+    assert 'usage: {}'.format(name) in Command(name).stderr
