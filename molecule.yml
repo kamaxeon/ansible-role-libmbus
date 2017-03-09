@@ -22,3 +22,6 @@ docker:
       image_version: 6
 verifier:
   name: testinfra
+molecule:
+  ignore_paths:
+    - venv
