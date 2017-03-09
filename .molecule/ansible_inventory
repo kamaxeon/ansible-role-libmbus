@@ -1,0 +1,5 @@
+libmbus_ubuntu_16.04 ansible_connection=docker
+libmbus_ubuntu_14.04 ansible_connection=docker
+libmbus_ubuntu_12.04 ansible_connection=docker
+libmbus_centos_7 ansible_connection=docker
+libmbus_centos_6 ansible_connection=docker

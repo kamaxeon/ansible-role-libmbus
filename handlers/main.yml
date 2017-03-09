@@ -1,0 +1,3 @@
+---
+- name: Update Library Path
+  shell: ldconfig || /bin/true

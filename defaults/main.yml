@@ -1,0 +1,3 @@
+---
+libmbus_repo: https://github.com/kamaxeon/libmbus.git
+libmbus_dest: /usr/src

@@ -1,0 +1,24 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+docker:
+  containers:
+    - name: libmbus_ubuntu_16.04
+      image: ubuntu
+      image_version: 16.04
+    - name: libmbus_ubuntu_14.04
+      image: ubuntu
+      image_version: 14.04.5
+    - name: libmbus_ubuntu_12.04
+      image: ubuntu
+      image_version: 12.04.5
+    - name: libmbus_centos_7
+      image: centos
+      image_version: 7
+    - name: libmbus_centos_6
+      image: centos
+      image_version: 6
+verifier:
+  name: testinfra
