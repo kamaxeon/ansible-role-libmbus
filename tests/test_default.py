@@ -22,7 +22,7 @@ def test_repo_dest(File):
     assert File(dir_repo).is_directory
 
 
-# Files
+# Binary Files
 @pytest.mark.parametrize('name, user, mode', [
     ('/usr/local/bin/mbus-serial-request-data', 'root', 0o755),
     ('/usr/local/bin/mbus-serial-request-data-multi-reply', 'root', 0o755),
@@ -37,12 +37,27 @@ def test_repo_dest(File):
     ('/usr/local/bin/mbus-tcp-scan', 'root', 0o755),
     ('/usr/local/bin/mbus-tcp-scan-secondary', 'root', 0o755),
     ('/usr/local/bin/mbus-tcp-select-secondary', 'root', 0o755),
-    ('/etc/ld.so.conf.d/libmbus_lib.conf', 'root',  0o644),
 ])
-def test_files(File, name, user, mode):
+def test_binary_files(File, SystemInfo, name, user, mode):
+    group = 'root'
+    if SystemInfo.distribution == 'debian':
+        group = 'staff'
     assert File(name).exists
     assert File(name).is_file
     assert File(name).user == user
+    assert File(name).group == group
+    assert File(name).mode == mode
+
+
+# Regular Files
+@pytest.mark.parametrize('name, user, group, mode', [
+    ('/etc/ld.so.conf.d/libmbus_lib.conf', 'root', 'root', 0o644),
+])
+def test_lib_path_file(File, name, user, group, mode):
+    assert File(name).exists
+    assert File(name).is_file
+    assert File(name).user == user
+    assert File(name).group == group
     assert File(name).mode == mode
 
 
