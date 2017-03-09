@@ -13,7 +13,7 @@ install:
 - cd /tmp/
 - git clone https://github.com/kamaxeon/ansible-role-libmbus.git libmbus
 - cd libmbus
-- sed -i "1d" requirements.txt
+- sed -i '/ansible==/d' requirements.txt
 - pip install tox-travis
 
 script:
