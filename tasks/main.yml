@@ -8,4 +8,38 @@
 - name: Ensure git repository is downloaded
   git:
    repo: "{{ libmbus_repo }}"
-   dest: "{{ libmbus_dest }}"
+   dest: "{{ libmbus_src_dest }}"
+
+- name: Checking for installed binary files
+  stat:
+    path: "/usr/local/bin/{{ item }}"
+  with_items: "{{ libmbus_binary_files }}"
+  register: check_installed_binary_files
+
+- name: Ensure ./clean.sh is executed if binary files are not compiled
+  shell: ./clean.sh
+  args:
+    chdir: "{{ libmbus_src_dest }}"
+  with_items: " {{ check_installed_binary_files.results }}"
+  when:
+    - not item | skipped
+    - not item.stat.exists
+
+- name: Ensure ./build.sh is executed if binary files are not compiled
+  shell: ./build.sh
+  args:
+    chdir: "{{ libmbus_src_dest }}"
+  with_items: " {{ check_installed_binary_files.results }}"
+  when:
+    - not item | skipped
+    - not item.stat.exists
+
+
+- name: Ensure make install is executed if binary files are not installed
+  shell: make install
+  args:
+    chdir: "{{ libmbus_src_dest }}"
+  with_items: " {{ check_installed_binary_files.results }}"
+  when:
+    - not item | skipped
+    - not item.stat.exists
