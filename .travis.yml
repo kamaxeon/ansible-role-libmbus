@@ -13,10 +13,11 @@ install:
 - cd /tmp/
 - git clone https://github.com/kamaxeon/ansible-role-libmbus.git libmbus
 - cd libmbus
-- pip install -r requirements.txt
+- cat requirements.txt | grep -v "ansible=" > requirements.txt
+- pip install tox-travis
 
 script:
-- molecule test
+- tox
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
