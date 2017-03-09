@@ -22,35 +22,31 @@ def test_repo_dest(File):
     assert File(dir_repo).is_directory
 
 
-# Binary files
-@pytest.mark.parametrize('name', [
-    ('/usr/local/bin/mbus-serial-request-data'),
-    ('/usr/local/bin/mbus-serial-request-data-multi-reply'),
-    ('/usr/local/bin/mbus-serial-scan'),
-    ('/usr/local/bin/mbus-serial-scan-secondary'),
-    ('/usr/local/bin/mbus-serial-select-secondary'),
-    ('/usr/local/bin/mbus-serial-switch-baudrate'),
-    ('/usr/local/bin/mbus-tcp-application-reset'),
-    ('/usr/local/bin/mbus-tcp-raw-send'),
-    ('/usr/local/bin/mbus-tcp-request-data'),
-    ('/usr/local/bin/mbus-tcp-request-data-multi-reply'),
-    ('/usr/local/bin/mbus-tcp-scan'),
-    ('/usr/local/bin/mbus-tcp-scan-secondary'),
-    ('/usr/local/bin/mbus-tcp-select-secondary'),
+# Files
+@pytest.mark.parametrize('name, user, group, mode', [
+    ('/usr/local/bin/mbus-serial-request-data', 'root', 'root', 0o755),
+    ('/usr/local/bin/mbus-serial-request-data-multi-reply',
+        'root', 'root', 0o755),
+    ('/usr/local/bin/mbus-serial-scan', 'root', 'root', 0o755),
+    ('/usr/local/bin/mbus-serial-scan-secondary', 'root', 'root', 0o755),
+    ('/usr/local/bin/mbus-serial-select-secondary', 'root', 'root', 0o755),
+    ('/usr/local/bin/mbus-serial-switch-baudrate', 'root', 'root', 0o755),
+    ('/usr/local/bin/mbus-tcp-application-reset', 'root', 'root', 0o755),
+    ('/usr/local/bin/mbus-tcp-raw-send', 'root', 'root', 0o755),
+    ('/usr/local/bin/mbus-tcp-request-data', 'root', 'root', 0o755),
+    ('/usr/local/bin/mbus-tcp-request-data-multi-reply',
+        'root', 'root', 0o755),
+    ('/usr/local/bin/mbus-tcp-scan', 'root', 'root', 0o755),
+    ('/usr/local/bin/mbus-tcp-scan-secondary', 'root', 'root', 0o755),
+    ('/usr/local/bin/mbus-tcp-select-secondary', 'root', 'root', 0o755),
+    ('/etc/ld.so.conf.d/libmbus_lib.conf', 'root', 'root', 0o644)
 ])
-def test_binary_files(File, name):
+def test_files(File, name, user, group, mode):
     assert File(name).exists
     assert File(name).is_file
-    assert File(name).user == 'root'
-    assert File(name).mode == 0o755
-
-
-def test_local_lib_conf(File):
-    file = File('/etc/ld.so.conf.d/libmbus_lib.conf')
-    assert file.exists
-    assert file.is_file
-    assert file.user == 'root'
-    assert file.mode == 0o644
+    assert File(name).user == user
+    assert File(name).group == group
+    assert File(name).mode == mode
 
 
 # Binary files
