@@ -43,3 +43,12 @@
   when:
     - not item | skipped
     - not item.stat.exists
+
+- name: Ensure library path for libmbus is created
+  copy:
+    src=local_lib.conf
+    dest=/etc/ld.so.conf.d/libmbus_lib.conf
+    owner=root
+    group=root
+    mode=0644
+  notify: Update Library Path
