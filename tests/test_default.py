@@ -23,29 +23,26 @@ def test_repo_dest(File):
 
 
 # Files
-@pytest.mark.parametrize('name, user, group, mode', [
-    ('/usr/local/bin/mbus-serial-request-data', 'root', 'root', 0o755),
-    ('/usr/local/bin/mbus-serial-request-data-multi-reply',
-        'root', 'root', 0o755),
-    ('/usr/local/bin/mbus-serial-scan', 'root', 'root', 0o755),
-    ('/usr/local/bin/mbus-serial-scan-secondary', 'root', 'root', 0o755),
-    ('/usr/local/bin/mbus-serial-select-secondary', 'root', 'root', 0o755),
-    ('/usr/local/bin/mbus-serial-switch-baudrate', 'root', 'root', 0o755),
-    ('/usr/local/bin/mbus-tcp-application-reset', 'root', 'root', 0o755),
-    ('/usr/local/bin/mbus-tcp-raw-send', 'root', 'root', 0o755),
-    ('/usr/local/bin/mbus-tcp-request-data', 'root', 'root', 0o755),
-    ('/usr/local/bin/mbus-tcp-request-data-multi-reply',
-        'root', 'root', 0o755),
-    ('/usr/local/bin/mbus-tcp-scan', 'root', 'root', 0o755),
-    ('/usr/local/bin/mbus-tcp-scan-secondary', 'root', 'root', 0o755),
-    ('/usr/local/bin/mbus-tcp-select-secondary', 'root', 'root', 0o755),
-    ('/etc/ld.so.conf.d/libmbus_lib.conf', 'root', 'root', 0o644)
+@pytest.mark.parametrize('name, user, mode', [
+    ('/usr/local/bin/mbus-serial-request-data', 'root', 0o755),
+    ('/usr/local/bin/mbus-serial-request-data-multi-reply', 'root', 0o755),
+    ('/usr/local/bin/mbus-serial-scan', 'root', 0o755),
+    ('/usr/local/bin/mbus-serial-scan-secondary', 'root', 0o755),
+    ('/usr/local/bin/mbus-serial-select-secondary', 'root', 0o755),
+    ('/usr/local/bin/mbus-serial-switch-baudrate', 'root', 0o755),
+    ('/usr/local/bin/mbus-tcp-application-reset', 'root', 0o755),
+    ('/usr/local/bin/mbus-tcp-raw-send', 'root', 0o755),
+    ('/usr/local/bin/mbus-tcp-request-data', 'root', 0o755),
+    ('/usr/local/bin/mbus-tcp-request-data-multi-reply', 'root', 0o755),
+    ('/usr/local/bin/mbus-tcp-scan', 'root', 0o755),
+    ('/usr/local/bin/mbus-tcp-scan-secondary', 'root', 0o755),
+    ('/usr/local/bin/mbus-tcp-select-secondary', 'root', 0o755),
+    ('/etc/ld.so.conf.d/libmbus_lib.conf', 'root',  0o644),
 ])
-def test_files(File, name, user, group, mode):
+def test_files(File, name, user, mode):
     assert File(name).exists
     assert File(name).is_file
     assert File(name).user == user
-    assert File(name).group == group
     assert File(name).mode == mode
 
 

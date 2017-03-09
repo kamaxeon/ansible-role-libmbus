@@ -14,12 +14,9 @@ docker:
     - name: libmbus_ubuntu_12.04
       image: ubuntu
       image_version: 12.04.5
-#    - name: libmbus_centos_7
-#      image: centos
-#      image_version: 7
-#    - name: libmbus_centos_6
-#      image: centos
-#      image_version: 6
+    - name: libmbus_debian_jessie
+      image: debian
+      image_version: jessie
 verifier:
   name: testinfra
 molecule:
