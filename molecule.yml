@@ -25,3 +25,4 @@ verifier:
 molecule:
   ignore_paths:
     - venv
+    - .tox
