@@ -9,6 +9,7 @@
   git:
    repo: "{{ libmbus_repo }}"
    dest: "{{ libmbus_src_dest }}"
+   version: master
 
 - name: Checking for installed binary files
   stat:
@@ -17,29 +18,29 @@
   register: check_installed_binary_files
 
 - name: Ensure ./clean.sh is executed if binary files are not compiled
-  shell: ./clean.sh
+  command: ./clean.sh
   args:
     chdir: "{{ libmbus_src_dest }}"
-  with_items: " {{ check_installed_binary_files.results }}"
+  with_items: "{{ check_installed_binary_files.results }}"
   when:
     - not item | skipped
     - not item.stat.exists
 
 - name: Ensure ./build.sh is executed if binary files are not compiled
-  shell: ./build.sh
+  command: ./build.sh
   args:
     chdir: "{{ libmbus_src_dest }}"
-  with_items: " {{ check_installed_binary_files.results }}"
+  with_items: "{{ check_installed_binary_files.results }}"
   when:
     - not item | skipped
     - not item.stat.exists
 
 
 - name: Ensure make install is executed if binary files are not installed
-  shell: make install
+  command: make install
   args:
     chdir: "{{ libmbus_src_dest }}"
-  with_items: " {{ check_installed_binary_files.results }}"
+  with_items: "{{ check_installed_binary_files.results }}"
   when:
     - not item | skipped
     - not item.stat.exists
