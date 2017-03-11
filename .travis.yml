@@ -1,8 +1,4 @@
 ---
-ignore:
-- README.md
-- CONTRIBUTING.md
-
 sudo: required
 language: python
 python: "2.7"
