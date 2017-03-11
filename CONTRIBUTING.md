@@ -31,11 +31,12 @@ pip install -r requirements.txt
 Testing
 -------
 
-I'm using [molecule](https://github.com/metacloud/molecule) and docker, so you can run
+I'm using [molecule](https://github.com/metacloud/molecule) and [docker](https://www.docker.com/). To test you can do it
 
 ```
 molecule test
 ```
+
 
 For travis and using tox to check with multiples ansible versions.
 
