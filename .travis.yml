@@ -1,6 +1,7 @@
 ---
 ignore:
-- *.md
+- README.md
+- CONTRIBUTING.md
 
 sudo: required
 language: python
