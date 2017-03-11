@@ -1,6 +1,12 @@
-You need python and python-devel installed. 
+Contributing
+===========
 
-* Debian/Ubuntu
+Install
+-------
+
+You need python, python-devel and libffi-dev installed. 
+
+* Debian/Ubuntu (Tested on Ubuntu 14.04)
 
 ```
 sudo apt-get install python2 python2.7-dev libffi-dev
@@ -17,7 +23,21 @@ I recomend use virtualenv, in order to use virtualenv, you must do:
 ```
 git clone https://gitlab.com/kamaxeon/ansible-role-libmbus.git libmbus
 cd libmbus
-virtualenv --python=python2.7 venv # I use python 3.4, maybe works in other python version
+virtualenv --python=python2.7 venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
+
+Testing
+-------
+
+I'm using [molecule](https://github.com/metacloud/molecule) and docker, so you can run
+
+```
+molecule test
+```
+
+For travis and using tox to check with multiples ansible versions.
+
+
+PR are welcome !!!!
