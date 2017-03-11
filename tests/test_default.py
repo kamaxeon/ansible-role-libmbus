@@ -16,6 +16,14 @@ def test_base_packes(Package, name):
     assert Package(name).is_installed
 
 
+# Libmbus Base Package
+@pytest.mark.parametrize('name', [('libtool-ltdl-devel'), ])
+def test_centros_7_package(Package, SystemInfo, name):
+    if SystemInfo.distribution == 'centos' and \
+            SystemInfo.release.startswith('7'):
+        assert Package(name).is_installed
+
+
 def test_repo_dest(File):
     dir_repo = '/usr/src/libmbus'
     assert File(dir_repo).exists
