@@ -1,4 +1,4 @@
-Role Name
+LibMbus
 =========
 [![Build Status](https://travis-ci.org/kamaxeon/ansible-role-libmbus.svg?branch=master)](https://travis-ci.org/kamaxeon/ansible-role-libmbus)
 
