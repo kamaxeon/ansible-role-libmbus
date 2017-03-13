@@ -5,6 +5,8 @@ python: "2.7"
 services:
 - docker
 
+cache: pip
+
 before_install:
 - sudo apt-get -qq update
 - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-engine libffi-dev
@@ -15,16 +17,9 @@ env:
 - ANSIBLE_VERSION=2.1.4.0
 - ANSIBLE_VERSION=2.2.1.0
 
-install:
-- cd /tmp/
-- git clone https://github.com/kamaxeon/ansible-role-libmbus.git libmbus
-- cd libmbus
-- sed -i '/ansible==/d' requirements.txt
-- pip install -r requirements.txt
-- "pip install $ANSIBLE_VERSION"
 
 script:
-- molecule test
+- ./run_travis.sh
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
