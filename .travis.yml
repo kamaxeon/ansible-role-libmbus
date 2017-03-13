@@ -19,7 +19,7 @@ env:
 
 
 script:
-- ./run_travis.sh
+- ./run_travis.sh $ANSIBLE_VERSION
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
