@@ -21,7 +21,7 @@ install:
 - cd libmbus
 - sed -i '/ansible==/d' requirements.txt
 - pip install -r requirements.txt
-- pip install $ANSIBLE_VERSION
+- "pip install $ANSIBLE_VERSION"
 
 script:
 - molecule test
