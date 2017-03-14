@@ -1,0 +1,16 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+docker:
+  containers:
+    - name: libmbus_DOCKER_NAME
+      image: DOCKER_IMAGE
+      image_version: DOCKER_IMAGE_VERSION
+verifier:
+  name: testinfra
+molecule:
+  ignore_paths:
+    - venv
+    - .tox
