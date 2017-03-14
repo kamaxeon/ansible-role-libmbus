@@ -4,43 +4,24 @@ language: python
 python: "2.7"
 services:
 - docker
-
 cache: pip
+env:
+  - ANSIBLE_VERSION=2.0.2.0
+  - ANSIBLE_VERSION=2.1.4.0
+  - ANSIBLE_VERSION=2.2.1.0
 
 before_install:
-- sudo apt-get -qq update
-- sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-engine libffi-dev
-
+  - sudo apt-get -qq update
+  - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-engine libffi-dev
 
 install:
-- cp -a ~/build/kamaxeon/ansible-role-libmbus ~/libmbus
-- cd ~/libmbus
-- sed -i '/ansible==/d' requirements.txt
-
-
-env:
-- ANSIBLE_VERSION=2.0.2.0 DOCKER_IMAGE=centos DOCKER_IMAGE_VERSION=7
-- ANSIBLE_VERSION=2.0.2.0 DOCKER_IMAGE=ubuntu DOCKER_IMAGE_VERSION=12.04
-- ANSIBLE_VERSION=2.0.2.0 DOCKER_IMAGE=ubuntu DOCKER_IMAGE_VERSION=14.04
-- ANSIBLE_VERSION=2.0.2.0 DOCKER_IMAGE=ubuntu DOCKER_IMAGE_VERSION=16.04
-- ANSIBLE_VERSION=2.0.2.0 DOCKER_IMAGE=debian DOCKER_IMAGE_VERSION=jessie
-- ANSIBLE_VERSION=2.0.2.0 DOCKER_IMAGE=debian DOCKER_IMAGE_VERSION=wheezy
-- ANSIBLE_VERSION=2.1.4.0 DOCKER_IMAGE=centos DOCKER_IMAGE_VERSION=7
-- ANSIBLE_VERSION=2.1.4.0 DOCKER_IMAGE=ubuntu DOCKER_IMAGE_VERSION=12.04
-- ANSIBLE_VERSION=2.1.4.0 DOCKER_IMAGE=ubuntu DOCKER_IMAGE_VERSION=14.04
-- ANSIBLE_VERSION=2.1.4.0 DOCKER_IMAGE=ubuntu DOCKER_IMAGE_VERSION=16.04
-- ANSIBLE_VERSION=2.1.4.0 DOCKER_IMAGE=debian DOCKER_IMAGE_VERSION=jessie
-- ANSIBLE_VERSION=2.1.4.0 DOCKER_IMAGE=debian DOCKER_IMAGE_VERSION=wheezy
-- ANSIBLE_VERSION=2.2.1.0 DOCKER_IMAGE=centos DOCKER_IMAGE_VERSION=7
-- ANSIBLE_VERSION=2.2.1.0 DOCKER_IMAGE=ubuntu DOCKER_IMAGE_VERSION=12.04
-- ANSIBLE_VERSION=2.2.1.0 DOCKER_IMAGE=ubuntu DOCKER_IMAGE_VERSION=14.04
-- ANSIBLE_VERSION=2.2.1.0 DOCKER_IMAGE=ubuntu DOCKER_IMAGE_VERSION=16.04
-- ANSIBLE_VERSION=2.2.1.0 DOCKER_IMAGE=debian DOCKER_IMAGE_VERSION=jessie
-- ANSIBLE_VERSION=2.2.1.0 DOCKER_IMAGE=debian DOCKER_IMAGE_VERSION=wheezy
-
+  - cp -a ~/build/kamaxeon/ansible-role-libmbus ~/libmbus
+  - cd ~/libmbus
+  - sed -i '/ansible==/d' requirements.txt
 
 script:
-- ./run_travis.sh
+  - pip install -r requirements.txt ansible==$ANSIBLE_VERSION
+  - molecule test
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
