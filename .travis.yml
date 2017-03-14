@@ -15,6 +15,7 @@ before_install:
 install:
 - cp -a ~/build/kamaxeon/ansible-role-libmbus ~/libmbus
 - cd ~/libmbus
+- sed -i '/ansible==/d' requirements.txt
 
 
 env:
