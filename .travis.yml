@@ -12,6 +12,11 @@ before_install:
 - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-engine libffi-dev
 
 
+install:
+- cp -a ~/kamaxeon/ansible-role-libmbus ~/libmbus
+- cd ~/libmbus
+
+
 env:
 - ANSIBLE_VERSION=2.0.2.0 DOCKER_IMAGE=centos DOCKER_IMAGE_VERSION=7
 - ANSIBLE_VERSION=2.0.2.0 DOCKER_IMAGE=ubuntu DOCKER_IMAGE_VERSION=12.04
@@ -34,7 +39,7 @@ env:
 
 
 script:
-- ./run_travis.sh $ANSIBLE_VERSION $DOCKER_IMAGE $DOCKER_IMAGE_VERSION
+- ./run_travis.sh
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
