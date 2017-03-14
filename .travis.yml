@@ -13,7 +13,7 @@ before_install:
 
 
 install:
-- cp -a ~/kamaxeon/ansible-role-libmbus ~/libmbus
+- cp -a ~/build/kamaxeon/ansible-role-libmbus ~/libmbus
 - cd ~/libmbus
 
 
