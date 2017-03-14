@@ -46,7 +46,6 @@ sh==1.11
 six==1.10.0
 tabulate==0.7.5
 testinfra==1.4.5
-tox==2.6.0
 virtualenv==15.1.0
 websocket-client==0.40.0
 wheel==0.24.0
